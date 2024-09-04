@@ -7,395 +7,17 @@ const scoreEndGame = document.getElementById('score_endgame');
 const btnRestartGame = document.getElementById('btn_restart_game');
 const btnStartGame = document.getElementById('btnStart');
 
-// class Vector2D {
-//     constructor(x, y) {
-//         this.x = x;
-//         this.y = y;
-//     }
 
-//     static distance(v1, v2) {
 
-//         const x = v2.x - v1.x;
-//         const y = v2.y - v1.y;
 
-//         return  new Vector2D(x,y).magnitude();
-//     }
 
-//     normalize() {
-//         const magnitude = this.magnitude();
-//         if (magnitude > 0) {
-//             return new Vector2D(this.x / magnitude, this.y / magnitude);
-//         } else {
-//             return new Vector2D(0, 0); 
-//         }
-//     }
 
-//     static direction(v1, v2) {
-//         const dx = v2.x - v1.x;
-//         const dy = v2.y - v1.y;
-//         const directionVector = new Vector2D(dx, dy);
 
-//         return directionVector.normalize(); 
-//     }
 
-//     magnitude() {
-//         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
-//     }
-// }
-
-
-
-// const GameMono = 
-// {
-//     canvas : canvas,
-//     ctx  : context,
-//     width : canvas.width,
-//     height : canvas.height,
-// }
-
-// class Player
-// {
-//     constructor(x,y,color)
-//     {
-//         this.x = x,
-//          this.y  = y,
-//          this.color = color;
-//     }
-
-//     drawplayer()
-//     {
-
-//         context.fillStyle  = this.color;
-//         context.beginPath();
-//         context.arc(this.x,this.y,20,Math.PI * 2,false);
-//         context.fill();
-//     }
-// }
-
-
-// class Bullet
-// {
-//     constructor(x,y,color,radius,movespeed,direction)
-//     {
-//         this.x = x,
-//         this.y = y,
-//         this.color = color,
-//         this.radius = radius,
-//         this.movespeed = movespeed,
-//         this.direction = direction
-//     }
-
-//     drawbullet()
-//     {
-//         context.beginPath();
-//         context.fillStyle = this.color,
-//         context.arc(this.x, this.y, this.radius, Math.PI * 2 , false);
-//         context.fill();
-//     }
-
-//     update()
-//     {
-//         this.drawbullet();
-//         this.x = this.x + this.direction.x * this.movespeed;
-//         this.y = this.y + this.direction.y * this.movespeed;
-//     }
-//     getposition() 
-//     {
-//         return new Vector2D(this.y,this.y);
-//     }
-
-
-
-// }
-
-// class Enemy
-// {
-//     constructor(x,y,color,movespeed,radius,direction)
-//     {
-//         this.x = x,
-//         this.y = y,
-//         this.color = color,
-//         this.direction = direction,
-//         this.movespeed = movespeed,
-//         this.radius = radius;
-//     }
-
-//     drawbullet()
-//     {
-//         context.beginPath();
-//         context.fillStyle = this.color,
-//         context.arc(this.x, this.y, this.radius, Math.PI * 2 , false);
-//         context.fill();
-//     }
-
-//     update()
-//     {
-//         this.drawbullet();
-//         this.x = this.x + this.direction.x * this.movespeed;
-//         this.y = this.y + this.direction.y * this.movespeed;
-//     }
-
-//     getposition() 
-//     {
-//         return new Vector2D(this.y,this.y);
-//     }
-
-
-// }
-
-
-
-// const x = canvas.width / 2;
-// const y = canvas.height / 2;
-// const player = new Player(x,y,'red');
-
-
-
-// const bullets = [];
-// const enemys = [];
-// const pointSpawnEmemy = [];
-
-// function SetPointSpawnEnemy()
-// {
-//     let angel = 0;
-//     const cenpoint = new Vector2D(canvas.width/2, canvas.height/2);
-//     const dc = Vector2D.distance(cenpoint, new Vector2D(canvas.width,0));
-//     while(angel < 360)
-//     {
-//         const x = cenpoint.x + dc * Math.cos(angel);
-//         const y = cenpoint.x + dc * Math.sin(angel);
-//         const pointAdd  = new Vector2D(x,y);
-//         pointSpawnEmemy.push(pointAdd);
-//         angel += 90;
-//     }
-// }
-
-
-// function SpawnEnemy()
-// {
-//      setInterval(()=>
-//      {
-
-//         const randomIndex = Math.floor(Math.random() * pointSpawnEmemy.length);
-//         const point = pointSpawnEmemy[randomIndex];
-//          const target = new Vector2D(canvas.width/2, canvas.height/2);
-//          const direction = Vector2D.direction(new Vector2D(point.x, point.y) , target);
-//         const enemyadd = new Enemy(point.x,point.y,'green',1,20,direction);
-//         enemys.push(enemyadd);
-
-//  },1000);
-// }
-
-// SetPointSpawnEnemy();
-// SpawnEnemy();
-
-
-
-// function CheckOutOfCanvas(x,y)
-// {
-//     if(x < 0 || x> canvas.width || y < 0 || y> canvas.height)
-//     {
-//         return true;
-//     }
-//     return false;
-// }
-
-// canvas.addEventListener("click", function(event) {
-
-//     const target = new Vector2D(event.clientX,event.clientY);
-//     const originpoint = new Vector2D(canvas.width/2 , canvas.height/2);
-//     const direction = Vector2D.direction(originpoint,target);
-
-//     const bullet = new Bullet(canvas.width/2,canvas.height/2,'blue',10,4, direction);
-//     bullets.push(bullet);
-
-// });
-
-
-// let idAnimationFrame;
-// function animate()
-// {
-//     context.fillStyle = 'rgba(0,0,0,0.1)'
-//     context.fillRect(0,0,canvas.width,canvas.height);
-//     idAnimationFrame =  requestAnimationFrame(animate);
-//     player.drawplayer();
-//     bullets.forEach((bullet, bulletIndex) =>
-//     {
-//         bullet.update();
-//         setTimeout(()=>
-//         {
-//             if(CheckOutOfCanvas(bullet.x, bullet.y))
-//             {
-//                 bullets.splice(bulletIndex,1);
-//             }
-//         },0);
-//     }
-//     );
-//     enemys.forEach((enemy,index) =>
-//         {
-//            enemy.update();
-//            if(Vector2D.distance(enemy.getposition() , new Vector2D(player.x,player.y)) < 1)
-//            {
-//                // cancelAnimationFrame(idAnimationFrame);
-//            }
-
-
-
-
-//            bullets.forEach((bullet, bulletIndex) =>
-//             {
-
-//                 if(Vector2D.distance(enemy.getposition(), bullet.getposition())  < 1)
-//                 {
-//                     setTimeout(() => {
-//                         enemys.splice(index,1);
-//                     bullets.splice(bulletIndex,1);
-//                     }, 0); 
-//                 }
-//             }
-//             )
-//         }
-//         )
-
-// }
-// animate();
-
-
-
-
-
-class Vector2D {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    static distance(v1, v2) {
-        return this.direction(v1, v2).magnitude();
-    }
-
-    normalize() {
-        const magnitude = this.magnitude();
-        if (magnitude > 0) {
-            return new Vector2D(this.x / magnitude, this.y / magnitude);
-        } else {
-            return new Vector2D(0, 0);
-        }
-    }
-
-    static direction(v1, v2) {
-        const dx = v2.x - v1.x;
-        const dy = v2.y - v1.y;
-        const directionVector = new Vector2D(dx, dy);
-        return directionVector.normalize();
-    }
-
-    magnitude() {
-        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
-    }
-}
-
-
-
-
-canvas.width = innerWidth
-canvas.height = innerHeight
-
-class Player {
-    constructor(x, y, radius, color) {
-        this.x = x
-        this.y = y
-        this.radius = radius
-        this.color = color
-    }
-
-    draw() {
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.fillStyle = this.color
-        c.fill()
-    }
-}
-
-class Projectile {
-    constructor(x, y, radius, color, velocity) {
-        this.x = x
-        this.y = y
-        this.radius = radius
-        this.color = color
-        this.velocity = velocity
-    }
-
-    draw() {
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.fillStyle = this.color
-        c.fill()
-    }
-
-    update() {
-        this.draw()
-        this.x = this.x + this.velocity.x
-        this.y = this.y + this.velocity.y
-    }
-}
-
-class Enemy {
-    constructor(x, y, radius, color, velocity) {
-        this.x = x
-        this.y = y
-        this.radius = radius
-        this.color = color
-        this.velocity = velocity
-    }
-
-    draw() {
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.fillStyle = this.color
-        c.fill()
-    }
-
-    update() {
-        this.draw()
-        this.x = this.x + this.velocity.x
-        this.y = this.y + this.velocity.y
-    }
-}
-
-const friction = 0.99
-class Particle {
-    constructor(x, y, radius, color, velocity) {
-        this.x = x
-        this.y = y
-        this.radius = radius
-        this.color = color
-        this.velocity = velocity
-        this.alpha = 1
-    }
-
-    draw() {
-        c.save()
-        c.globalAlpha = this.alpha
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.fillStyle = this.color
-        c.fill()
-        c.restore()
-    }
-
-    update() {
-        this.draw()
-        this.velocity.x *= friction
-        this.velocity.y *= friction
-        this.x = this.x + this.velocity.x
-        this.y = this.y + this.velocity.y
-        this.alpha -= 0.01
-    }
-}
 
 const x = canvas.width / 2
 const y = canvas.height / 2
+
 let score = 0;
 let isLose = false;
 let player = new Player(x, y, 10, 'white')
@@ -403,8 +25,17 @@ let projectiles = []
 let enemies = []
 let particles = []
 let animationId;
-
+let backgroundParticles = []
+let timeSpawnEnemy = 3000;
 function Init() {
+
+
+
+
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
     score = 0;
     isLose = false;
     player = new Player(x, y, 10, 'white')
@@ -414,6 +45,24 @@ function Init() {
     scoreplayer.innerHTML = 0;
     animate()
     spawnEnemies()
+
+    backgroundParticles = []
+
+    const spacing = 30
+  
+    for (let x = 0; x < canvas.width + spacing; x += spacing) {
+      for (let y = 0; y < canvas.height + spacing; y += spacing) {
+        backgroundParticles.push(
+          new BackgroundParticle({
+            position: {
+              x,
+              y
+            },
+            radius: 3
+          })
+        )
+      }
+    }
 }
 function spawnEnemies() {
     setInterval(() => {
@@ -445,16 +94,39 @@ function spawnEnemies() {
 
             enemies.push(new Enemy(x, y, radius, color, velocity))
         }
-    }, 1000)
+    }, timeSpawnEnemy)
 }
+
+
+
+function createScoreLable({position , score})
+{
+    const scoreLable = document.createElement('label');
+    scoreLable.innerHTML = score;
+    scoreLable.style.color = 'white';
+    scoreLable.style.position = 'absolute';
+    scoreLable.style.left = position.x + 'px';
+    scoreLable.style.top = position.y + 'px';
+    scoreLable.style.userSelect = 'none';
+    document.body.appendChild(scoreLable);
+
+    gsap.to(scoreLable,{
+        opacity:0,
+        y : -30,
+        duration: 0.75,
+        onComplete: () =>
+        {
+            scoreLable.parentNode.removeChild(scoreLable);
+        }
+    })
+}
+
 
 
 function animate() {
     animationId = requestAnimationFrame(animate)
-
     c.fillStyle = 'rgba(0, 0, 0, 0.1)'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    player.draw()
     particles.forEach((particle, index) => {
         if (particle.alpha <= 0) {
             particles.splice(index, 1)
@@ -462,8 +134,49 @@ function animate() {
             particle.update()
         }
     })
+    backgroundParticles.forEach((backgroundParticle) => {
+        backgroundParticle.draw()
+    
+        const dist = Math.hypot(
+          player.x - backgroundParticle.position.x,
+          player.y - backgroundParticle.position.y
+        )
+    
+        if (dist < 100) {
+          backgroundParticle.alpha = 0
+    
+          if (dist > 70) {
+            backgroundParticle.alpha = 0.5
+          }
+        } else if (dist > 100 && backgroundParticle.alpha < 0.1) {
+          backgroundParticle.alpha += 0.01
+        } else if (dist > 100 && backgroundParticle.alpha > 0.1) {
+          backgroundParticle.alpha -= 0.01
+        }
+      })
 
+      backgroundParticles.forEach((backgroundParticle) => {
+    backgroundParticle.draw()
 
+    const dist = Math.hypot(
+      player.x - backgroundParticle.position.x,
+      player.y - backgroundParticle.position.y
+    )
+
+    if (dist < 100) {
+      backgroundParticle.alpha = 0
+
+      if (dist > 70) {
+        backgroundParticle.alpha = 0.5
+      }
+    } else if (dist > 100 && backgroundParticle.alpha < 0.1) {
+      backgroundParticle.alpha += 0.01
+    } else if (dist > 100 && backgroundParticle.alpha > 0.1) {
+      backgroundParticle.alpha -= 0.01
+    }
+  })
+
+    player.update()
     for (let index = projectiles.length - 1; index >= 0; index--) {
         const projectile = projectiles[index];
         projectile.update()
@@ -503,10 +216,14 @@ function animate() {
 
         for (let projectilesIndex = projectiles.length - 1; projectilesIndex >= 0; projectilesIndex--) {
             const projectile = projectiles[projectilesIndex];
-            const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y)
+           // const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y)
 
+            const point1 = new Vector2D(projectile.x, projectile.y);
+            const point2 = new Vector2D(enemy.x, enemy.y);
+            const distance = Vector2D.distance(point1, point2);
             // when projectiles touch enemy
-            if (dist - enemy.radius - projectile.radius < 1) {
+            //dist - enemy.radius - projectile.radius < 1
+            if (distance - enemy.radius - projectile.radius < 1) {
                 // create explosions
                 for (let i = 0; i < enemy.radius * 2; i++) {
                     particles.push(
@@ -526,6 +243,14 @@ function animate() {
                     gsap.to(enemy, {
                         radius: enemy.radius - 10
                     })
+                    score+=100;
+                    scoreplayer.innerHTML = score;
+                    createScoreLable({position :{
+                        x : projectile.x,
+                        y: projectile.y
+                    },
+                score: 100});
+                    
 
                     projectiles.splice(projectilesIndex, 1)
 
@@ -533,39 +258,47 @@ function animate() {
 
                     enemies.splice(index, 1)
                     projectiles.splice(projectilesIndex, 1)
-                    score++;
+                    score+=150;
                     scoreplayer.innerHTML = score;
-
+                    createScoreLable({position :{
+                        x : projectile.x,
+                        y: projectile.y
+                    },
+                score: 150});
                 }
             }
         }
 
     }
 
+    UpdateTimeSpawmEnemy();
 }
 
 addEventListener('click', (event) => {
 
     if (!isLose) {
-        const angle = Math.atan2(
-            event.clientY - canvas.height / 2,
-            event.clientX - canvas.width / 2
-        )
+        const angle = Math.atan2(event.clientY - player.y, event.clientX - player.x)
         const velocity = {
-            x: Math.cos(angle) * 5,
-            y: Math.sin(angle) * 5
+          x: Math.cos(angle) * 5,
+          y: Math.sin(angle) * 5
         }
-
+        const point1 = new Vector2D(player.x , player.y);
+        const point2 = new Vector2D(event.clientX, event.clientY);
+        const direction = Vector2D.direction(point1, point2).normalize();
+    
         projectiles.push(
-            new Projectile(canvas.width / 2, canvas.height / 2, 5, 'white', velocity)
+            new Projectile(player.x,player.y, 5, 'white', 
+               {
+                x: direction.x * 5,
+                y: direction.y * 5
+               }
+            )
         )
     }
 
 })
 
 btnRestartGame.addEventListener('click', (event) => {
-
-
     uiGameOver.style.display = 'none';
     Init();
     
@@ -587,3 +320,36 @@ btnStartGame.addEventListener('click',(event) =>
    )
 })
 
+
+
+window.addEventListener('keydown', (event)=>
+{
+    switch (event.key) {
+        case 'ArrowRight':
+          player.velocity.x += 1
+          break
+        case 'ArrowUp':
+          player.velocity.y += -1
+          break
+        case 'ArrowLeft':
+          player.velocity.x += -1
+          break
+        case 'ArrowDown':
+          player.velocity.y += 1
+          break
+      }
+})
+
+
+
+function UpdateTimeSpawmEnemy()
+{
+    if(score > 1000  && score <2000)
+    {
+        timeSpawnEnemy -=1000;
+    }
+    if(score > 2000 && score <3000)
+    {
+        timeSpawnEnemy -= 1000;
+    }
+}
